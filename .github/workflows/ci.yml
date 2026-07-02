@@ -45,8 +45,10 @@ jobs:
 
       - name: Tag Docker Image
         run: |
-          docker tag titanic-survival-prediction ghcr.io/${{ github.repository_owner }}/titanic-survival-prediction:latest
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          docker tag titanic-survival-prediction ghcr.io/$OWNER/titanic-survival-prediction:latest
 
       - name: Push Docker Image
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/titanic-survival-prediction:latest
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          docker push ghcr.io/$OWNER/titanic-survival-prediction:latest
